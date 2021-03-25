@@ -1,0 +1,15 @@
+FROM ubuntu:18.04
+
+RUN apt update
+RUN apt-get install -y python-dev default-libmysqlclient-dev build-essential
+RUN apt install -y python-pip
+RUN apt install -y mysql-client
+
+RUN mkdir /data
+ADD requirements.txt /data/requirements.txt
+
+WORKDIR /data
+
+RUN pip install -r requirements.txt
+
+CMD ["tail", "-f", "/dev/null"]
